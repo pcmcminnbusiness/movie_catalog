@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movie_catalog/movieInfo.dart';
+import 'package:movie_catalog/infoScreen.dart';
 
 class MovieCard extends StatefulWidget {
   final movieInfo daMovieInfo;
@@ -17,11 +18,21 @@ class MovieCardState extends State<MovieCard> {
       children: [
         Padding(
           padding: const EdgeInsets.fromLTRB(30, 20, 30, 20),
-          child: SizedBox(
-              width: 200,
-              //height: 400,
-              child: Image.network(
-                  'https://image.tmdb.org/t/p/w500${widget.daMovieInfo.daImage}')),
+          child: GestureDetector(
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => InfoScreen(
+                            daMovieInfo: widget.daMovieInfo,
+                          )));
+            },
+            child: SizedBox(
+                width: 200,
+                //height: 400,
+                child: Image.network(
+                    'https://image.tmdb.org/t/p/w500${widget.daMovieInfo.daImage}')),
+          ),
         ),
         Container(
           alignment: Alignment.center,
